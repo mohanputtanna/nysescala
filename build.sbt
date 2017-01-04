@@ -1,0 +1,12 @@
+name := "nysescala"
+version := "1.0"
+scalaVersion := "2.11.8"
+
+libraryDependencies += "org.apache.spark" % "spark-core_2.11" % "1.6.2"
+libraryDependencies += "org.apache.spark" % "spark-sql_2.11" % "1.6.2"
+libraryDependencies += "org.apache.spark" % "spark-hive_2.11" % "1.6.2"
+libraryDependencies += "org.apache.spark" % "spark-streaming_2.11" % "1.6.2"
+libraryDependencies += "org.apache.spark" %% "spark-streaming-twitter" % "1.6.2"
+libraryDependencies += "org.apache.spark" %% "spark-streaming-flume" % "1.6.2"
+libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.24"
+libraryDependencies += "com.typesafe" % "config" % "1.3.0"

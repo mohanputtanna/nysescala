@@ -58,7 +58,7 @@ object EachDayRevenue{
     val completedOrders = ordersDF.filter(ordersDF("order_status")==="COMPLETE")
     //join only completed orders DF with order_items DF on  order_ID in orders and order_items_order_id
     val ordersJoin = completedOrders.join(orderItemsDF, completedOrders("order_id") === orderItemsDF("order_item_order_id"))
-    
+    //save the final data as text file
    val finalData = ordersJoin.groupBy("order_date").sum("order_item_subtotal").sort("order_date").rdd.saveAsTextFile(outputPath)
     
   }

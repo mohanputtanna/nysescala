@@ -28,7 +28,7 @@ object SparkPopularHashTags {
     System.setProperty("twitter4j.oauth.accessTokenSecret", accessTokenSecret)
 
     // Set the Spark StreamingContext to create a DStream for every 5 seconds
-    val ssc = new StreamingContext(sc, Seconds(5))
+    val ssc = new StreamingContext(sc, Seconds(120))
     // Pass the filter keywords as arguements
 
     //  val stream = FlumeUtils.createStream(ssc, args(0), args(1).toInt)  
@@ -38,12 +38,12 @@ object SparkPopularHashTags {
     val hashTags = stream.flatMap(status => status.getText.split(" ").filter(_.startsWith("#")))
 
     // Get the top hashtags over the previous 60 sec window
-    val topCounts60 = hashTags.map((_, 1)).reduceByKeyAndWindow(_ + _, Seconds(60))
+    val topCounts60 = hashTags.map((_, 1)).reduceByKeyAndWindow(_ + _, Seconds(120))
       .map { case (topic, count) => (count, topic) }
       .transform(_.sortByKey(false))
 
     // Get the top hashtags over the previous 10 sec window
-    val topCounts10 = hashTags.map((_, 1)).reduceByKeyAndWindow(_ + _, Seconds(10))
+    val topCounts10 = hashTags.map((_, 1)).reduceByKeyAndWindow(_ + _, Seconds(240))
       .map { case (topic, count) => (count, topic) }
       .transform(_.sortByKey(false))
 

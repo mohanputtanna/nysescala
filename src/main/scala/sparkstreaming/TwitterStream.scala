@@ -34,14 +34,14 @@ object TwitterStream {
     
     val streamSC = new StreamingContext(sc,Seconds(5))
     
-    val filters = Array("new year")
+    val filters = Array("Indians")
     
     val stream = TwitterUtils.createStream(streamSC, None, filters);
     
     val hashTags = stream.flatMap(rec => rec.getText.split(" "))
     
-    hashTags.foreachRDD(rdd => {println(rdd)
-    })
+    hashTags.foreachRDD(rdd => {println(rdd)})
+    
     
     
     stream.print()

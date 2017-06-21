@@ -5,6 +5,7 @@ import com.typesafe.config.ConfigFactory
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import java.math.BigInteger
+import org.apache.spark.sql.SQLContext
 
 
 object avgstockvolume {
